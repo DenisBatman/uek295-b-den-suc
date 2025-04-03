@@ -24,11 +24,14 @@ public class AddressService {
         return addressRepository.findAll();
     }
 
+    public List<Address> getAllAddressesSortByCity(String city) {
+        return addressRepository.findByCityOrderByCityAsc(city);
+    }
+
     public Optional<Address> getAddress(UUID id) {
         return addressRepository.findById(id);
     }
 
-    @PostMapping("/table")
     public Address createAddress(Address address) {
         return addressRepository.save(address);
     }

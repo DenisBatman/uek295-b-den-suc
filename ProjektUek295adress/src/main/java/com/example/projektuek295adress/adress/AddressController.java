@@ -18,29 +18,33 @@ public class AddressController {
         this.addressService = addressService;
     }
 
-    @GetMapping
+    @GetMapping("GetAllAddresses/")
     public List<Address> getAll() {
         return addressService.getAllAddresses();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("sortByCity/")
+    public List<Address> getAllSortByCity(String city) {
+        return addressService.getAllAddressesSortByCity(city);
+    }
+
+    @GetMapping("GetAddressById/{id}")
     public Address getById(@PathVariable UUID id) {
         return addressService.getAddress(id).orElse(null);
     }
 
-    @PostMapping("/")
+    @PostMapping("CreateAddress/")
     public ResponseEntity<Address> create(@RequestBody Address address) {
         Address created = addressService.createAddress(address);
         return ResponseEntity.ok(created);
     }
 
-
-    @PutMapping("/{id}")
+    @PutMapping("EditAddress/{id}")
     public Address update(@PathVariable UUID id, @RequestBody Address address) {
         return addressService.updateAddress(id, address);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("DeleteAddress/{id}")
     public void delete(@PathVariable UUID id) {
         addressService.deleteAddress(id);
     }

@@ -1,9 +1,7 @@
 package com.example.projektuek295adress.customer;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.example.projektuek295adress.adress.Address;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.UUID;
@@ -23,4 +21,8 @@ public class Customer {
     private String name;
     private String phone;
     private String birthday;
+
+    @ManyToOne
+    @JoinColumn(name = "id_address", referencedColumnName = "address_id")
+    private Address address;
 }
