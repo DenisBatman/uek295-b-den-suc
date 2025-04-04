@@ -16,13 +16,14 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID customer_id;
+    @Column(name = "customer_id")
+    private UUID customerId;
 
     private String name;
     private String phone;
     private String birthday;
 
     @ManyToOne
-    @JoinColumn(name = "id_address", referencedColumnName = "address_id")
+    @JoinColumn(name = "id_address", referencedColumnName = "addressId")
     private Address address;
 }
