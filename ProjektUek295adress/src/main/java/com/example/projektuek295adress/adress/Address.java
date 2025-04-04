@@ -17,7 +17,7 @@ public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID address_id;
+    private UUID adressId;
 
     private String city;
     private String street;
