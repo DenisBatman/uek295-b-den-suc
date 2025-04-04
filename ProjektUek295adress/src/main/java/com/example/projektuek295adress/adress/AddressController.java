@@ -1,6 +1,8 @@
 package com.example.projektuek295adress.adress;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,7 +38,7 @@ public class AddressController {
     @PostMapping("CreateAddress/")
     public ResponseEntity<Address> create(@RequestBody Address address) {
         Address created = addressService.createAddress(address);
-        return ResponseEntity.ok(created);
+        return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
     @PutMapping("EditAddress/{id}")
@@ -45,7 +47,8 @@ public class AddressController {
     }
 
     @DeleteMapping("DeleteAddress/{id}")
-    public void delete(@PathVariable UUID id) {
+    public ResponseEntity<Void> delete(@PathVariable UUID id) {
         addressService.deleteAddress(id);
+        return ResponseEntity.noContent().build();
     }
 }
